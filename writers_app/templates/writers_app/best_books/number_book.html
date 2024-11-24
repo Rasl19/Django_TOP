@@ -1,0 +1,9 @@
+{% extends 'writers_app/base.html' %}
+
+
+
+{% block content %}
+    <p>Книга {{ info_book.title }}</p><br>
+    <p>Автор книги является {{ info_book.author }}</p><br>
+    <p>Описание книги {{ info_book.description }}</p><br>
+{% endblock %}

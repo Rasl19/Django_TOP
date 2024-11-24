@@ -1,0 +1,19 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'index' %}"><h2>Главная</h2></a>
+        <a href="{% url 'writers' %}"><h2>Писатели</h2></a>
+        <a href="{% url 'best_books' %}"><h2>Топ лучших книг</h2></a>
+    </header>
+    {% block content %} {% endblock %}
+</body>
+</html>

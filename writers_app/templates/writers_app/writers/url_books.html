@@ -1,0 +1,13 @@
+{% extends 'writers_app/base.html' %}
+
+
+
+{% block content %}
+    {% if books %}
+        {% for key, value in books.items %}
+            <a href="{% url 'book_info' writer_name key %}"><h3>{{ value.title }}</h3></a>
+        {% endfor %}
+    {% else %}
+        <h3>Ничего не найдено</h3>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'writers_app/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <h3>Писатели</h3>
+    <a href="{% url 'writers_name' 'Hemingway' %}"><h3>Хемингуэй</h3></a>
+    <a href="{% url 'writers_name' 'Shakespeare' %}"><h3>Шекспир</h3></a>
+{% endblock %}

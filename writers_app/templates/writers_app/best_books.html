@@ -1,0 +1,10 @@
+{% extends 'writers_app/base.html' %}
+
+
+
+{% block content %}
+    <h3>Лучшие книги</h3>
+    {% for top_book in top_books.values %}
+        <a href="{% url 'top_book' top_book.position %}"><h3>#{{ top_book.position }} {{ top_book.title }}</h3></a>
+    {% endfor %}
+{% endblock %}
