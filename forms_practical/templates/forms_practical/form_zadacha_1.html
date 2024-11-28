@@ -1,0 +1,15 @@
+{% extends 'forms_practical/base.html' %}
+
+
+
+{% block content %}
+    {% if form %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить</button>
+        </form>
+    {% else %}
+        <h3>Добрый день, {{ data.name }} {{ data.surname }}</h3>
+    {% endif %}
+{% endblock %}
