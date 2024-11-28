@@ -17,3 +17,16 @@ class UserLogin(forms.Form):
                 self.add_error('password', 'Неверный пароль')
         else:
             self.add_error('login', 'Пользователя с таким логином не существует')
+
+
+class CalculateForm(forms.Form):
+    num_1 = forms.IntegerField(label='Число 1')
+    num_2 = forms.IntegerField(label='Число 2')
+    num_3 = forms.IntegerField(label='Число 3')
+
+    CHOICES = [
+        ('sum', 'Сумма'),
+        ('product', 'Произведение'),
+        ('average', 'Среднее'),
+    ]
+    operation = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect, label='Операция')

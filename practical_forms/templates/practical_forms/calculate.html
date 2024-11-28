@@ -1,0 +1,16 @@
+{% extends 'practical_forms/base.html' %}
+
+
+
+{% block content %}
+    {% if form %}
+        <h3>Калькулятор</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Рассчитать</button>
+        </form>
+    {% else %}
+        <h3>Ответ: {{ data }}</h3>
+    {% endif %}
+{% endblock %}
