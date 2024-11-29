@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import *
 from .const import *
+import datetime
 
 
 def login(request):
@@ -45,3 +46,37 @@ def calculate(request):
     form = CalculateForm()
     context['form'] = form
     return render(request, 'practical_forms/calculate.html', context)
+
+def registre(request):
+    context = {'title': 'Регистрация', }
+    if request.method == 'POST':
+        form = UserRegistre(request.POST)
+        print(form)
+        if form.is_valid():
+            data = form.cleaned_data
+            print(data)
+            context['data'] = data
+            return render(request, 'practical_forms/registre.html', context)
+        else:
+            context['form'] = form
+            return render(request, 'practical_forms/registre.html', context)
+    form = UserRegistre()
+    context['form'] = form
+    return render(request, 'practical_forms/registre.html', context)
+
+def day_programming(request):
+    context = {'title': 'С днем орешника', }
+    if request.method == 'POST':
+        form = YearProgramming(request.POST)
+        if form.is_valid():
+            year = form.cleaned_data['year']
+            if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
+                day_programmer = datetime.date(year, 9, 26)
+            else:
+                day_programmer = datetime.date(year, 9, 27)
+            day_name = day_programmer.strftime('%A')
+            context['message'] = f'{day_programmer.day} сентября {day_name}'
+    else:
+        form = YearProgramming()
+        context['form'] = form
+    return render(request, 'practical_forms/day_programm.html', context)

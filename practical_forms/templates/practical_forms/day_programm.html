@@ -1,0 +1,15 @@
+{% extends 'practical_forms/base.html' %}
+
+
+{% block content %}
+    <h3>День программиста</h3>
+    {% if form %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Узнать</button>
+        </form>
+    {% else %}
+        <h3>Ответ: {{ message }}</h3>
+    {% endif %}
+{% endblock %}

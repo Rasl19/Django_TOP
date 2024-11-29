@@ -30,3 +30,25 @@ class CalculateForm(forms.Form):
         ('average', 'Среднее'),
     ]
     operation = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect, label='Операция')
+
+
+class UserRegistre(forms.Form):
+    name = forms.CharField(label='Имя', required=True)
+    surname = forms.CharField(label='Фамилия', required=True)
+    age = forms.IntegerField(label='Возраст', min_value=1, max_value=120)
+    email = forms.EmailField(label='Email')
+    CHOICES = [
+        ('Муж', 'Муж'),
+        ('Жен', 'Жен'),
+    ]
+    sex = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect, label='Пол')
+    delivery_address = forms.CharField(label='Адрес доставки')
+    subscribe_newsletter = forms.BooleanField(label='Получать новости компании', required=False)
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        return email
+
+
+class YearProgramming(forms.Form):
+    year = forms.IntegerField(label='Год', min_value=1900, max_value=2100)

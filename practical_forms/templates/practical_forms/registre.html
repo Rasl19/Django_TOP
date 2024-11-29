@@ -1,0 +1,26 @@
+{% extends 'practical_forms/base.html' %}
+
+
+
+{% block content %}
+    {% if form %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    {% else %}
+        <h3>Ваш профиль</h3>
+        <h4>Имя: {{ data.name }}</h4>
+        <h4>Фамилия: {{ data.surname }}</h4>
+        <h4>Возраст: {{ data.age }}</h4>
+        <h4>Email: {{ data.email }}</h4>
+        <h4>Пол: {{ data.sex }}</h4>
+        <h4>Адрес доставки: {{ data.delivery_address }}</h4>
+        {% if data.subscribe_newsletter%}
+            <h4>Подписка на новости: Подписан</h4>
+        {% else %}
+            <h4>Подписка на новости: Не подписан</h4>
+        {% endif %}
+    {% endif %}
+{% endblock %}
