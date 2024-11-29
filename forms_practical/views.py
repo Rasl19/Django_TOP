@@ -52,3 +52,18 @@ def form_zadacha_2(request):
     form = ForNumber()
     context['form'] = form
     return render(request, 'forms_practical/form_zadacha_2.html', context)
+
+def form_zadacha_3(request):
+    context = {'title': 'Подписка',}
+    if request.method == 'POST':
+        form = SubscriptionNews(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            context['data'] = data
+            return render(request, 'forms_practical/form_zadacha_3.html', context)
+        else:
+            context['form'] = form
+            return render(request, 'forms_practical/form_zadacha_3.html', context)
+    form = SubscriptionNews()
+    context['form'] = form
+    return render(request, 'forms_practical/form_zadacha_3.html', context)
