@@ -67,3 +67,24 @@ def form_zadacha_3(request):
     form = SubscriptionNews()
     context['form'] = form
     return render(request, 'forms_practical/form_zadacha_3.html', context)
+
+def form_zadacha_4(request):
+    context = {
+        'title': 'Таблица',
+        'data': {},
+    }
+    if request.method == 'POST':
+        form = MultiplicationTable(request.POST)
+        if form.is_valid():
+            for i in range(form.cleaned_data['num_1'], form.cleaned_data['num_2'] + 1):
+                var = []
+                for j in range(1, 11):
+                    var.append(f'{i} * {j} = {i * j}')
+                context['data'][i] = var
+            return render(request, 'forms_practical/form_zadacha_4.html', context)
+        else:
+            context['form'] = form
+            return render(request, 'forms_practical/form_zadacha_4.html', context)
+    form = MultiplicationTable
+    context['form'] = form
+    return render(request, 'forms_practical/form_zadacha_4.html', context)

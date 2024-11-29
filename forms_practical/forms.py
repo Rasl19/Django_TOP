@@ -27,3 +27,15 @@ class SubscriptionNews(forms.Form):
     ]
     sex = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect, label='Пол')
     email = forms.EmailField(label='Email')
+
+
+class MultiplicationTable(forms.Form):
+    num_1 = forms.IntegerField(label='Число 1', min_value=1)
+    num_2 = forms.IntegerField(label='Число 2', min_value=1)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data['num_1'] > cleaned_data['num_2']:
+            self.add_error('num_1', 'Число 1 должно быть меньше Числа 2')
+        else:
+            return cleaned_data
