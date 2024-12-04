@@ -1,0 +1,21 @@
+{% extends 'products/base.html' %}
+
+
+
+{% block content %}
+    {% if form %}
+        <form action="" method="get">
+            {{ form.as_p }}
+            <button type="submit">Поиск</button>
+        </form>
+    {% else %}
+        <h2>Результат поиска:</h2>
+        <ul>
+            {% for name, details in data.items %}
+                <li>{{ name }} - Цвет: {{ details.Цвет }}, Размер: {{ details.Размер }}</li>
+            {% empty %}
+                <li>Нет результата</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
