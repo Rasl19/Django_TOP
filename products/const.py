@@ -28,5 +28,3 @@ PRODUCTS = {
         'Размер': '42',
     },
 }
-
-KEYS_PRODUCTS = [k for k in PRODUCTS.keys()]

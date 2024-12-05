@@ -17,24 +17,12 @@ def products(request):
         if form.is_valid():
             query = form.cleaned_data['query']
             context['query'] = query
-            # context['data'] = {name: details for name, details in PRODUCTS.items() if query.lower() in name.lower()}
-            context['data'] = {name: details for name, details in PRODUCTS.items() if query.lower() in name.lower()}
-            context['maxPage'] = ceil(len(context['data']) / 3)
-
+            data = [name for name in PRODUCTS.keys() if query.lower() in name.lower()]
+            context['maxPage'] = ceil(len(data) / 3)
+            if page != context['maxPage']:
+                diapazon = data[(page - 1) * 3:page*3]
+            else:
+                diapazon = data[(page - 1) * 3::]
+            context['data'] = {i: PRODUCTS[i] for i in diapazon}
     context['form'] = form
     return render(request, 'products/index.html', context)
-
-
-
-# def products(request):
-#     context = {'title': 'Главная', }
-#     form = Products()
-#
-#     if 'query' in request.GET:
-#         form = Products(request.GET)
-#         if form.is_valid():
-#             query = form.cleaned_data['query']
-#             context['data'] = {name: details for name, details in PRODUCTS.items() if query.lower() in name.lower()}
-#     else:
-#         context['form'] = form
-#     return render(request, 'products/index.html', context)
