@@ -1,0 +1,16 @@
+{% extends 'restaurant/base.html' %}
+
+
+{% block content %}
+    <a href="{% url 'index' %}">На главную</a>
+	<h2>Профиль | {{ data.name }}</h2>
+    <p>Название: {{ data.name }}</p>
+    <p>Кухня: {{ data.specialization }}</p>
+    <p>Адрес: {{ data.address }}</p>
+    <p>Web сайт: <a href="{{ data.web_site }}">Клик</a>
+    <p>Телефон: {{ data.phone }}</p>
+    <small>
+        <a href="{% url 'delite' data.id %}"><button>Удалить</button></a>
+        <a href="{% url 'edit' data.id %}"><button>Изменить</button></a>
+    </small>
+{% endblock %}

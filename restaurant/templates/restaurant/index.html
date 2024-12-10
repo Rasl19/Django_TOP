@@ -1,0 +1,23 @@
+{% extends 'restaurant/base.html' %}
+
+
+{% block content %}
+    <div>
+        <form action="" method="get" style="display: inline;">
+            {{ search }}
+            <button type="submit">Найти</button>
+        </form>
+        <button id="resetButton">Сбросить</button>
+    </div><br>
+
+    <a href="{% url 'add' %}"><button>Добавить</button></a>
+
+    <h2>Рестораны города</h2>
+    {% if data %}
+        {% for d in data %}
+        	<a href="{% url 'profile' d.id %}"><p>{{ d }}</p></a>
+        {% endfor %}
+    {% else %}
+        <p>Нет данных</p>
+    {% endif %}
+{% endblock %}
