@@ -1,0 +1,19 @@
+{% extends 'phone_book/base.html' %}
+
+
+{% block content %}
+    <form action="" method="get">
+        {{ serach }}
+        <button type="submit">Поиск</button>
+    </form>
+
+    <h2>Телефонная книга</h2>
+    <a href="{% url 'add' %}">Добавить</a><br>
+    {% if view_data %}
+        {% for data in view_data %}
+            <p><a href="{% url 'view_profile' data.id %}"><b>{{ data.first_name }} {{ data.last_name }}</b> - {{ data.phone }}</a></p>
+        {% endfor %}
+    {% else %}
+        <p>Нет данных</p>
+    {% endif %}
+{% endblock %}

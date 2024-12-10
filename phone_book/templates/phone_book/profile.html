@@ -1,0 +1,15 @@
+{% extends 'phone_book/base.html' %}
+
+
+{% block content %}
+    <h3>Профиль</h3>
+    <p><b>Имя:</b>{{ profile.first_name }}</p>
+    <p><b>Фамилия:</b>{{ profile.last_name }}</p>
+    <p><b>Email:</b>{{ profile.email }}</p>
+    <p><b>Телефон:</b>{{ profile.phone }}</p>
+    <p><b>Примечание:</b>{{ profile.note }}</p>
+    <small>
+        <a href="{% url 'del' profile.id %}"><button>Удалить</button></a>
+        <a href="{% url 'edit' profile.id %}"><button>Изменить</button></a>
+    </small>
+{% endblock %}
