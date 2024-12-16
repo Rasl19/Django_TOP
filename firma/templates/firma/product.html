@@ -1,0 +1,16 @@
+{% extends 'firma/base.html' %}
+
+
+
+{% block content %}
+    <h2>Товары</h2>
+    <a href="{% url 'product_add' %}"><button style="background-color: green">Добавить</button></a>
+    {% if data %}
+        {% for d in data %}
+            <a href="{% url 'product_profile' d.id %}"><p>Название - {{ d.name }}</p></a>
+            <p>Цена - {{ d.price }}$</p><br>
+        {% endfor %}
+     {% else %}
+        <p>Нет данных</p>
+    {% endif %}
+{% endblock %}

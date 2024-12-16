@@ -1,0 +1,14 @@
+{% extends 'firma/base.html' %}
+
+
+{% block content %}
+    <h3>Профиль</h3>
+    <p>Покупатель - {{ profile.buyer }}</p>
+    <p>Продавец - {{ profile.salesman }}</p>
+    <p>Товар - {{ profile.product }}</p>
+    <p>Дата продажи - {{ profile.date_sales }}</p>
+    <p>Количество - {{ profile.quantity }}</p>
+    <p>Сумма продажи - {{ profile.sum_sales }}$</p>
+    <a href="{% url 'sales_info_edit' profile.id %}"><button>Изменить</button></a>
+    <a href="{% url 'sales_info_delited' profile.id %}"><button style="background-color: red">Удалить</button></a>
+{% endblock %}

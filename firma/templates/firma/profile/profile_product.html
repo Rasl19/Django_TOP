@@ -1,0 +1,12 @@
+{% extends 'firma/base.html' %}
+
+
+{% block content %}
+    <h3>Профиль</h3>
+    <p>Название - {{ profile.name }}</p>
+    <p>Цена - {{ profile.price }}</p>
+    <p>Количество - {{ profile.quantity }}</p>
+    <p>Описание - {{ profile.description }}</p>
+    <a href="{% url 'product_edit' profile.id %}"><button>Изменить</button></a>
+    <a href="{% url 'product_delited' profile.id %}"><button style="background-color: red">Удалить</button></a>
+{% endblock %}

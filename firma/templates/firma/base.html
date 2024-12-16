@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'index' %}">Главная</a>
+        <a href="{% url 'buyer_view' %}">Покупатели</a>
+        <a href="{% url 'salesman_view' %}">Продавцы</a>
+        <a href="{% url 'product_view' %}">Товары</a>
+        <a href="{% url 'sales_info_view' %}">Продажи</a>
+    </header>
+    {% block content %} {% endblock %}
+</body>
+</html>

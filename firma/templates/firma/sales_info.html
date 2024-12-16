@@ -1,0 +1,15 @@
+{% extends 'firma/base.html' %}
+
+
+
+{% block content %}
+    <h2>Информация о продажах</h2>
+    <a href="{% url 'sales_info_add' %}"><button style="background-color: green">Добавить</button></a>
+    {% if data %}
+        {% for d in data %}
+            <a href="{% url 'sales_info_profile' d.id %}"><p>{{ d }}</p></a><br>
+        {% endfor %}
+     {% else %}
+        <p>Нет данных</p>
+    {% endif %}
+{% endblock %}

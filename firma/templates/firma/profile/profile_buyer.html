@@ -1,0 +1,12 @@
+{% extends 'firma/base.html' %}
+
+
+{% block content %}
+    <h3>Профиль</h3>
+    <p>Имя - {{ profile.name }}</p>
+    <p>Фамилия - {{ profile.surname }}</p>
+    <p>Телефон - {{ profile.phone }}</p>
+    <p>Email - {{ profile.email }}</p>
+    <a href="{% url 'buyer_edit' profile.id %}"><button>Изменить</button></a>
+    <a href="{% url 'buyer_delited' profile.id %}"><button style="background-color: red">Удалить</button></a>
+{% endblock %}
