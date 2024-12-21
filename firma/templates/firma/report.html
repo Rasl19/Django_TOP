@@ -1,0 +1,16 @@
+{% extends 'firma/base.html' %}
+
+
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+    {% if data %}
+            <p>{{ data.buyer__name }}</p>
+            <p>{{ data.total_sum }}$</p>
+
+    {% endif %}
+{% endblock %}

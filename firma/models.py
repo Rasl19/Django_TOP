@@ -48,4 +48,4 @@ class SalesInfoModel(models.Model):
         super(SalesInfoModel, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'Покупатель: {self.buyer.name} | Продавец: {self.salesman.name} | Сумма: {self.sum_sales}'
+        return f'Покупатель: {self.buyer.name} | Продавец: {self.salesman.name} | Сумма: {self.sum_sales} $'

@@ -7,7 +7,7 @@
     <a href="{% url 'salesman_add' %}"><button style="background-color: green">Добавить</button></a>
     {% if data %}
         {% for d in data %}
-            <a href="{% url 'salesman_profile' d.id %}"><p>{{ d.name }} {{ d.surname }}</p></a><br>
+            <a href="{% url 'salesman_profile' d.id %}"><p>{{ d.name }} {{ d.surname }}</p></a>
         {% endfor %}
      {% else %}
         <p>Нет данных</p>

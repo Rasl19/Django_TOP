@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
+from django.db.models import Avg, Sum, Max, Min, Count
 
 
 def index(request):
-    return render(request, 'firma/index.html', {'title': 'Главная',})
+    return render(request, 'firma/index.html', {'title': 'Главная', })
 
 
 def buyer_view(request):
@@ -214,3 +215,76 @@ def sales_info_delited(request, id):
     profile = get_object_or_404(SalesInfoModel, id=id)
     profile.delete()
     return redirect('sales_info_view')
+
+
+# Отображение всех покупателей заданного продавца;
+
+# def report(request):
+#     form = SalesmanReportForm(request.POST or None)
+#     context = {
+#         'title': 'Вывод Информации',
+#         'form': form,
+#     }
+#     if request.method == 'POST':
+#         form = SalesmanReportForm(data=request.POST)
+#         if form.is_valid():
+#             salesman = get_object_or_404(SalesmanModel, id=int(form.cleaned_data['salesman']))
+#             data = SalesInfoModel.objects.filter(salesman=salesman)
+#             context['data'] = data
+#     return render(request, 'firma/report.html', context)
+
+
+def report(request):
+    form = SalesmanReportForm(request.POST or None)
+    context = {
+        'title': 'Вывод Информации',
+    }
+    if request.method == 'POST':
+        # Отображение всех продаж на заданную дату
+        # data = SalesInfoModel.objects.filter(date_sales='2024-12-17')
+
+        # Отображение всех продавцов, которые продали заданный товар;
+        # data = SalesInfoModel.objects.filter(product__name='Груша')
+
+        # Отображение всех покупателей, которые купили заданный товар
+        # data = SalesInfoModel.objects.filter(product__name='Груша')
+
+        # Отображение общей суммы продаж в заданный день.
+        # data = SalesInfoModel.objects.filter(date_sales='2024-12-17').aggregate(sum_sales = Sum('sum_sales', default=0))
+
+        # Отобразить название самого продаваемого товара
+        # data = SalesInfoModel.objects.values('product__name').annotate(total_quantity=Sum('quantity')).order_by(
+        #     '-total_quantity').first()
+
+        # Отобразить лучшего продавца.Критерий определения:
+        # максимальная сумма продаж
+        # P.S допишу корректнее задание максимальная ОБЩАЯ сумма продаж.
+        # Просто человек может 10 продаж по 1$ сделать у него сумма = 10$
+        # А человек один раз на 2$ продал он уже лучшим будет. Это неверно
+        # data = SalesInfoModel.objects.values('salesman__name').annotate(total_sum_sales=Sum('sum_sales')).order_by(
+        #     '-total_sum_sales').first()
+
+        # Отобразить лучшего покупателя.
+        # Критерий определения: максимальная ОБЩАЯ сумма покупок
+        # data = SalesInfoModel.objects.values('buyer__name').annotate(sum_sales=Sum('sum_sales')).order_by(
+        #     '-sum_sales').first()
+
+        # Отобразить название самого продаваемого товара за
+        # указанный промежуток времени;
+        # data = SalesInfoModel.objects.filter(date_sales__gte='2024-12-1', date_sales__lte='2024-12-15').values(
+        #     'product__name').annotate(total_product=Sum('quantity')).order_by('-total_product').first()
+
+        # Отобразить лучшего продавца.
+        # Критерий определения: максимальная ОБЩАЯ сумма продаж за указанный
+        # промежуток времени
+        # data = SalesInfoModel.objects.filter(date_sales__gte='2024-12-1', date_sales__lte='2024-12-15').values(
+        #     'salesman__name').annotate(total_sum=Sum('sum_sales')).order_by('-total_sum').first()
+
+        # Отобразить лучшего покупателя.
+        # Критерий определения: максимальная ОБЩАЯ сумма покупок за указанный
+        # промежуток времени
+        data = SalesInfoModel.objects.filter(date_sales__gte='2024-12-1', date_sales__lte='2024-12-15').values(
+            'buyer__name').annotate(total_sum=Sum('sum_sales')).order_by('-total_sum').first()
+
+        context['data'] = data
+    return render(request, 'firma/report.html', context)

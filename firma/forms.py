@@ -24,3 +24,7 @@ class SalesInfoForm(forms.ModelForm):
     class Meta:
         model = SalesInfoModel
         fields = ('buyer', 'salesman', 'product', 'date_sales', 'quantity')
+
+
+class SalesmanReportForm(forms.Form):
+    salesman = forms.ChoiceField(choices=((i.id, i) for i in SalesmanModel.objects.all()))

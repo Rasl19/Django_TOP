@@ -23,4 +23,5 @@ urlpatterns = [
     path('salesman/<int:id>/del/', salesman_delited, name='salesman_delited'),
     path('product/<int:id>/del/', product_delited, name='product_delited'),
     path('sales_info/<int:id>/del/', sales_info_delited, name='sales_info_delited'),
+    path('report/', report, name='report'),
 ]
